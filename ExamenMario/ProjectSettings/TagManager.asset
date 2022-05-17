@@ -17,6 +17,7 @@ TagManager:
   - HurtBoxKoopa
   - Coin
   - Ground
+  - Mushroom
   layers:
   - Default
   - TransparentFX

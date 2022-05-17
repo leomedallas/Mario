@@ -25,6 +25,7 @@ public class Koopa : MonoBehaviour
 
     void Update()
     {
+
         if (mustMove)
         {
             transform.Translate(-2 * walkSpeed * Time.deltaTime, 0, 0); //Este bool hace que el Koopa se mueva a la izquierda

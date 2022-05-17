@@ -198,6 +198,7 @@ MonoBehaviour:
   walkSpeed: 0.5
   check: {fileID: 0}
   koopa: {fileID: 0}
+  mario: {fileID: 5283963299049714417, guid: 3278f0115c1a06b4a948dc6da59b240b, type: 3}
 --- !u!61 &5541857740166132528
 BoxCollider2D:
   m_ObjectHideFlags: 0

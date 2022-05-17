@@ -11,6 +11,7 @@ public class Mario : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sprRndr;
     private Animator anim;
+    private Collider2D coll;
     public CheckGround check;
     private AudioSource audioSource;
     [Header("Movement")]
@@ -24,6 +25,7 @@ public class Mario : MonoBehaviour
     [Header("Objects")]
     public int coins;
     public Star star;
+    public Mushroom mushroom;
     [Header("Misc")]
     public AudioClip[] clips;
     public TMP_Text txtCoin, txtScore, txtTime;
@@ -40,6 +42,7 @@ public class Mario : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sprRndr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        coll = GetComponent<Collider2D>();
         audioSource = GetComponent<AudioSource>();
         canMove = true; //Bool que hace que Mario se puede mover o no
         timesUp = false; //Bool que detecta cuando el tiempo se acabó
@@ -90,17 +93,26 @@ public class Mario : MonoBehaviour
         {
             anim.SetBool("IsStar", false);
         }
+
+        if(mushroom.isGrow)
+        {
+            anim.SetBool("Grow", true);
+        }
+        else if(!mushroom.isGrow)
+        {
+            anim.SetBool("Grow", false);
+        }
     }
 
     private void FixedUpdate()
     {
-        if (Input.GetKey("d") && canMove)  //Mueve a Mario a la derecha con D y activa la animación de correr
+        if (Input.GetKey(KeyCode.D) && canMove)  //Mueve a Mario a la derecha con D y activa la animación de correr
         {
             rb.velocity = new Vector2(runSpeed, rb.velocity.y);
             sprRndr.flipX = false;
             anim.SetBool("Run", true);
         }
-        else if (Input.GetKey("a") && canMove) //Mueve a Mario a la izquierda con A y activa la animación de correr
+        else if (Input.GetKey(KeyCode.A) && canMove) //Mueve a Mario a la izquierda con A y activa la animación de correr
         {
             rb.velocity = new Vector2(-runSpeed, rb.velocity.y);
             sprRndr.flipX = true;
