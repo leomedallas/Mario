@@ -31,7 +31,7 @@ public class Mario : MonoBehaviour
     public TMP_Text txtCoin, txtScore, txtTime;
     [Header("Time")]
     public int time;
-    public float timeRemaining;
+    public float timeRemaining; 
     public float starTimeRemaining;
     public bool timesUp;
     [Header("Score")]
