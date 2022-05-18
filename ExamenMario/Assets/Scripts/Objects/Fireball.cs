@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Fireball : MonoBehaviour
 {
-	public Rigidbody2D rb;
+	private Rigidbody2D rb;
 	public Vector2 velocity;
 
 	void Start()
@@ -41,7 +41,7 @@ public class Fireball : MonoBehaviour
 
 	IEnumerator Explode()
 	{
-		yield return new WaitForSeconds(1.5f);
+		yield return new WaitForSeconds(0f);
 		Destroy(this.gameObject);
 	}
 }

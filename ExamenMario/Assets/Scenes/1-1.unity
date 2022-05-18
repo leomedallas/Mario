@@ -57834,6 +57834,14 @@ PrefabInstance:
       propertyPath: projectile
       value: 
       objectReference: {fileID: 6377890664766409465, guid: 4294fc88e549bfd4ba5d2fdac6ec79c1, type: 3}
+    - target: {fileID: 1766676656, guid: 3278f0115c1a06b4a948dc6da59b240b, type: 3}
+      propertyPath: velocity.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1766676656, guid: 3278f0115c1a06b4a948dc6da59b240b, type: 3}
+      propertyPath: velocity.y
+      value: -4
+      objectReference: {fileID: 0}
     - target: {fileID: 5283963299049714417, guid: 3278f0115c1a06b4a948dc6da59b240b, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -57925,6 +57933,14 @@ PrefabInstance:
     - target: {fileID: 5283963299049714422, guid: 3278f0115c1a06b4a948dc6da59b240b, type: 3}
       propertyPath: m_Name
       value: Mario
+      objectReference: {fileID: 0}
+    - target: {fileID: 8679646738898345973, guid: 3278f0115c1a06b4a948dc6da59b240b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.296
+      objectReference: {fileID: 0}
+    - target: {fileID: 8679646738898345973, guid: 3278f0115c1a06b4a948dc6da59b240b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.085
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3278f0115c1a06b4a948dc6da59b240b, type: 3}

@@ -171,6 +171,7 @@ public class Mario : MonoBehaviour
 
         if (check.marioDies || timesUp) //Si se acaba el tiempo Mario deja de moverse y se activa la animación de muerte y Mario se desactiva después de la duración del sonido de muerte
         {
+            //coll.enabled = false;
             canMove = false;
             anim.SetBool("Die", true);
             Invoke("Death", 2.712f);
