@@ -19,6 +19,7 @@ TagManager:
   - Ground
   - Mushroom
   - Fireball
+  - Flower
   layers:
   - Default
   - TransparentFX

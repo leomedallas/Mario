@@ -30,20 +30,19 @@ public class HurtMario : MonoBehaviour
         {
             goomba.mustMove = false;
             check.marioDies = true;
-            Debug.Log("Entre");
         }
 
-        if(collision.transform.CompareTag("Mario") && !star.marioStar && mario.isGrow)
+        if(collision.transform.CompareTag("Mario") && !star.marioStar && !mario.isFlower && mario.isGrow)
         {
             mario.isGrow = false;
         }
 
-        if (collision.transform.CompareTag("Mario") && star.marioStar) //Si choca con Mario y Mario tiene la estrella destruye al Goomba
+        if (collision.transform.CompareTag("Mario") && !star.marioStar && mario.isFlower)
         {
-            Destroy(parent);
+            mario.isFlower = false;
         }
 
-        if (collision.transform.CompareTag("Mario") && star.marioStar && mario.isGrow) //Si choca con Mario y Mario tiene la estrella destruye al Goomba
+        if (collision.transform.CompareTag("Mario") && star.marioStar) //Si choca con Mario y Mario tiene la estrella destruye al Goomba
         {
             Destroy(parent);
         }

@@ -22,12 +22,11 @@ public class Mario : MonoBehaviour
     public bool betterJump = false;
     public float fallMultiplier = 0.5f;
     public float lowJumpMultiplier = 1f;
-    [Header("Life")]
-    public int life;
     [Header("Objects")]
     public int coins;
     public Star star;
     public bool isGrow;
+    public bool isFlower;
     [Header("Time")]
     public int time;
     public float timeRemaining; 
@@ -49,7 +48,7 @@ public class Mario : MonoBehaviour
         canMove = true; //Bool que hace que Mario se puede mover o no
         timesUp = false; //Bool que detecta cuando el tiempo se acabó
         isGrow = false;
-        life = 1;
+        isFlower = false;
         coins = 0; //Contador de monedas
         score = 0; //Contador de puntaje
         timeRemaining = 401; //Tiempo restante del nivel
@@ -109,6 +108,19 @@ public class Mario : MonoBehaviour
             anim.SetBool("Grow", false);
             coll.offset = new Vector2(0.00119f, 0.00030f);
             coll.size = new Vector2(0.24942f, 0.50069f);
+        }
+
+        if(isFlower)
+        {
+            anim.SetBool("IsFlower", true);
+            coll.offset = new Vector2(0.01149f, 0.2354f);
+            coll.size = new Vector2(0.4141f, 0.9709f);
+        }
+        else if (!isFlower)
+        {
+            anim.SetBool("IsFlower", false);
+            coll.offset = new Vector2(0.01149f, 0.2354f);
+            coll.size = new Vector2(0.4141f, 0.9709f);
         }
     }
 
@@ -188,9 +200,15 @@ public class Mario : MonoBehaviour
             IncreaseCoins();
         }
 
-        if (collision.gameObject.CompareTag("Mushroom")) //Si toca a Mario se activa el bool que detecta si Mario tiene la estrella y la estrella se destruye
+        if (collision.gameObject.CompareTag("Mushroom")) 
         {
             isGrow = true;
+            Destroy(collision.gameObject, 0.2f);
+        }
+
+        if (collision.gameObject.CompareTag("Flower") && isGrow)
+        {
+            isFlower = true;
             Destroy(collision.gameObject, 0.2f);
         }
     }

@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CheckStar : MonoBehaviour
+public class CheckFlower : MonoBehaviour
 {
     private AudioSource audioSource;
-    public GameObject star;
+    public GameObject flower;
+    public GameObject mushroom;
     public Mario mario;
 
     private void Start()
@@ -15,12 +16,20 @@ public class CheckStar : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Mario"))
+        if (collision.CompareTag("Mario") && !mario.isGrow)
         {
             mario.IncreaseScore(300);
             audioSource.Play();
-            star.gameObject.SetActive(true); //Activa el GameObject Star
-            StartCoroutine("Bump"); 
+            mushroom.gameObject.SetActive(true); //Activa el GameObject Star
+            StartCoroutine("Bump");
+        }
+
+        if (collision.CompareTag("Mario") && mario.isGrow)
+        {
+            mario.IncreaseScore(300);
+            audioSource.Play();
+            flower.gameObject.SetActive(true); //Activa el GameObject Star
+            StartCoroutine("Bump");
         }
     }
 

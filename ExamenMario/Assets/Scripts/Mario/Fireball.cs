@@ -7,7 +7,6 @@ public class Fireball : MonoBehaviour
 	public Rigidbody2D rb;
 	public Vector2 velocity;
 
-	// Use this for initialization
 	void Start()
 	{
 		Destroy(this.gameObject, 10);
@@ -15,7 +14,6 @@ public class Fireball : MonoBehaviour
 		velocity = rb.velocity;
 	}
 
-	// Update is called once per frame
 	void Update()
 	{
 
@@ -25,27 +23,25 @@ public class Fireball : MonoBehaviour
 		}
 	}
 
-	void OnCollisionEnter2D(Collision2D col)
+	void OnCollisionEnter2D(Collision2D collision)
 	{
-
 		rb.velocity = new Vector2(velocity.x, -velocity.y);
 
-		if (col.collider.tag == "Koopa" || col.collider.tag == "Goomba")
+		if (collision.gameObject.CompareTag("Koopa") || collision.gameObject.CompareTag("Goomba"))
 		{
-			Destroy(col.gameObject);
+			Destroy(collision.gameObject);
 			Explode();
 		}
 
-
-		if (col.contacts[0].normal.x != 0)
+		if (collision.contacts[0].normal.x != 0)
 		{
-			Explode();
+			StartCoroutine("Explode");
 		}
-
 	}
 
-	void Explode()
+	IEnumerator Explode()
 	{
+		yield return new WaitForSeconds(1.5f);
 		Destroy(this.gameObject);
 	}
 }
