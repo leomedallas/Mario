@@ -156,6 +156,11 @@ public class Mario : MonoBehaviour
         {
             audioSource.clip = clips[2];
             audioSource.Play();
+            anim.SetBool("IsThrow", true);
+        }
+        else
+        {
+            anim.SetBool("IsThrow", false);
         }
 
         if (!check.isGrounded) //Si el personaje no esta tocando el suelo se activa la animación de salto y se desactiva la de correr

@@ -41,7 +41,7 @@ public class Fireball : MonoBehaviour
 
 	IEnumerator Explode()
 	{
-		yield return new WaitForSeconds(1.5f);
+		yield return new WaitForSeconds(1.0f);
 		Destroy(this.gameObject);
 	}
 }

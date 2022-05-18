@@ -9,7 +9,7 @@ public class MarioProjectile : MonoBehaviour
 	public Vector2 velocity;
 	bool canShoot = true;
 	public Vector2 offset = new Vector2(0.4f, 0.1f);
-	public float cooldown = 0.5f;
+	public float cooldown = 0.2f;
 
     private void Start()
     {
