@@ -2789,11 +2789,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5345878522043029789, guid: 48c4011283e6107439f3b9982ba442fa, type: 3}
   m_PrefabInstance: {fileID: 1655370720}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &767412294 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4495081410500166427, guid: a80fe0d7fe20b2540882bc576961e152, type: 3}
-  m_PrefabInstance: {fileID: 4495081411267393744}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &782136635
 GameObject:
   m_ObjectHideFlags: 0
@@ -57209,10 +57204,6 @@ PrefabInstance:
       propertyPath: star
       value: 
       objectReference: {fileID: 1033099807}
-    - target: {fileID: 5283963299049714421, guid: 3278f0115c1a06b4a948dc6da59b240b, type: 3}
-      propertyPath: koopa
-      value: 
-      objectReference: {fileID: 767412294}
     - target: {fileID: 5283963299049714421, guid: 3278f0115c1a06b4a948dc6da59b240b, type: 3}
       propertyPath: txtCoin
       value: 

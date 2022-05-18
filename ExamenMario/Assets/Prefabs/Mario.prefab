@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5283963298141611703}
   - component: {fileID: 5283963298141611702}
   - component: {fileID: 5283963298141611701}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Stomper
   m_TagString: MarioFeet
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 5283963299032707161}
   - component: {fileID: 5283963299032707143}
   - component: {fileID: 5283963299032707160}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: IsGrounded
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,7 +255,7 @@ GameObject:
   - component: {fileID: 5283963299049714416}
   - component: {fileID: 5283963299049714421}
   - component: {fileID: 5283963299049714431}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mario
   m_TagString: Mario
   m_Icon: {fileID: 0}
@@ -275,6 +275,7 @@ Transform:
   m_Children:
   - {fileID: 5283963299032707161}
   - {fileID: 5283963298141611720}
+  - {fileID: 8679646738898345973}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -406,14 +407,13 @@ MonoBehaviour:
   lowJumpMultiplier: 2
   coins: 0
   star: {fileID: 0}
+  mushroom: {fileID: 0}
   clips:
   - {fileID: 8300000, guid: 00176155cd3c5524e8a09439f8ca9322, type: 3}
   - {fileID: 8300000, guid: dc7662b0acd67bc4087e5fd76bb1c2fe, type: 3}
   txtCoin: {fileID: 0}
   txtScore: {fileID: 0}
   txtTime: {fileID: 0}
-  koopa: {fileID: 4495081410500166427, guid: a80fe0d7fe20b2540882bc576961e152, type: 3}
-  distance: 0
   time: 0
   timeRemaining: 0
   starTimeRemaining: 0
@@ -515,3 +515,50 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &6430208093119427917
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8679646738898345973}
+  - component: {fileID: 1766676656}
+  m_Layer: 8
+  m_Name: MarioHand
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8679646738898345973
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6430208093119427917}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0.217, y: -0.091, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5283963299049714417}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &1766676656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6430208093119427917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab2c6e968f5704a4bb78e5d4ad15e4d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 6473778272719196823, guid: 4294fc88e549bfd4ba5d2fdac6ec79c1, type: 3}
+  velocity: {x: 3, y: -3}
+  offset: {x: 0.4, y: 0.1}
+  cooldown: 1

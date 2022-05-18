@@ -30,7 +30,7 @@ public class Mario : MonoBehaviour
     public bool isGrow;
     [Header("Time")]
     public int time;
-    public float timeRemaining;
+    public float timeRemaining; 
     public float starTimeRemaining;
     public bool timesUp;
     [Header("Score")]
