@@ -11,7 +11,7 @@ public class Mario : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sprRndr;
     private Animator anim;
-    private Collider2D coll;
+    private CapsuleCollider2D coll;
     public CheckGround check;
     private AudioSource audioSource;
     [Header("Movement")]
@@ -22,13 +22,12 @@ public class Mario : MonoBehaviour
     public bool betterJump = false;
     public float fallMultiplier = 0.5f;
     public float lowJumpMultiplier = 1f;
+    [Header("Life")]
+    public int life;
     [Header("Objects")]
     public int coins;
     public Star star;
-    public Mushroom mushroom;
-    [Header("Misc")]
-    public AudioClip[] clips;
-    public TMP_Text txtCoin, txtScore, txtTime;
+    public bool isGrow;
     [Header("Time")]
     public int time;
     public float timeRemaining;
@@ -36,16 +35,21 @@ public class Mario : MonoBehaviour
     public bool timesUp;
     [Header("Score")]
     public int score;
+    [Header("Misc")]
+    public AudioClip[] clips;
+    public TMP_Text txtCoin, txtScore, txtTime;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sprRndr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        coll = GetComponent<Collider2D>();
+        coll = GetComponent<CapsuleCollider2D>();
         audioSource = GetComponent<AudioSource>();
         canMove = true; //Bool que hace que Mario se puede mover o no
         timesUp = false; //Bool que detecta cuando el tiempo se acabó
+        isGrow = false;
+        life = 1;
         coins = 0; //Contador de monedas
         score = 0; //Contador de puntaje
         timeRemaining = 401; //Tiempo restante del nivel
@@ -94,13 +98,17 @@ public class Mario : MonoBehaviour
             anim.SetBool("IsStar", false);
         }
 
-        if(mushroom.isGrow)
+        if(isGrow)
         {
             anim.SetBool("Grow", true);
+            coll.offset = new Vector2(0.01149f, 0.2354f);
+            coll.size = new Vector2(0.4141f, 0.9709f);
         }
-        else if(!mushroom.isGrow)
+        else if(!isGrow)
         {
             anim.SetBool("Grow", false);
+            coll.offset = new Vector2(0.00119f, 0.00030f);
+            coll.size = new Vector2(0.24942f, 0.50069f);
         }
     }
 
@@ -162,6 +170,14 @@ public class Mario : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.CompareTag("Mushroom"))
+        {
+            Physics2D.IgnoreCollision(collision.collider, coll);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Coin")) //Si Mario choca con una moneda el contador de monedas aumenta y se activa el sonido de la moneda
@@ -170,6 +186,12 @@ public class Mario : MonoBehaviour
             audioSource.Play();
             IncreaseScore(100);
             IncreaseCoins();
+        }
+
+        if (collision.gameObject.CompareTag("Mushroom")) //Si toca a Mario se activa el bool que detecta si Mario tiene la estrella y la estrella se destruye
+        {
+            isGrow = true;
+            Destroy(collision.gameObject, 0.2f);
         }
     }
 

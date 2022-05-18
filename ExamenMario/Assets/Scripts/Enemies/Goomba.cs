@@ -11,7 +11,7 @@ public class Goomba : MonoBehaviour
 
     private void OnBecameVisible()
     {
-        enabled = true; //Se activa el GameObject cuando una cámara lo este viendo (Nota: tiene razón profe no funciona en Unity solo en el build xD, pero no encontré otra forma de hacerlo debido a que se me bugeaba Mario :( )
+        enabled = true; //Se activa el GameObject cuando una cámara lo este viendo 
     }
 
     private void OnBecameInvisible()

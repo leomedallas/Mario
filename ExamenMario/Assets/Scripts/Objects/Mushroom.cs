@@ -5,14 +5,12 @@ using UnityEngine;
 public class Mushroom : MonoBehaviour
 {
     public bool mustMove;
-    public bool isGrow;
     public float walkSpeed = 1.0f;
 
     public CheckGround check;
 
     private void Start()
     {
-        isGrow = false;
         mustMove = true; //Se desactiva cuando Mario muere
     }
 
@@ -39,17 +37,7 @@ public class Mushroom : MonoBehaviour
         if (collision.transform.CompareTag("Void"))
         {
             Destroy(gameObject); //Si choca con el vacío se destruye
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-
-        if (collision.gameObject.CompareTag("Mario")) //Si toca a Mario se activa el bool que detecta si Mario tiene la estrella y la estrella se destruye
-        {
-            isGrow = true;
-            Destroy(gameObject, 0.2f);
-        }
+        } 
     }
 
     void Flip()

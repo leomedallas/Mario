@@ -5,10 +5,12 @@ using UnityEngine;
 public class CheckHead : MonoBehaviour
 {
     private AudioSource audioSource;
+    public Mario mario;
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        mario = FindObjectOfType<Mario>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -17,6 +19,11 @@ public class CheckHead : MonoBehaviour
         {
             audioSource.Play();
             StartCoroutine("Bump"); //Si detecta que toco a Mario iniciamos la Corutina Bump
+        }
+        if(collision.CompareTag("Mario") && mario.isGrow)
+        {
+            Destroy(transform.parent.gameObject);
+            Debug.Log("Lol");
         }
     }
 
