@@ -18,7 +18,6 @@ public class SoundManager : MonoBehaviour
         audioSource.Play();
     }
 
-
     void Update()
     {
         if (check.marioDies || mario.timesUp) //Si Mario muere o se acaba el tiempo se inicia la corutina
@@ -29,6 +28,11 @@ public class SoundManager : MonoBehaviour
         if(clear.stageClear)
         {
             StartCoroutine("StageClear"); //Si Mario completa el nivel se inicia la corutina
+        }
+
+        if(star.marioStar)
+        {
+            StartCoroutine("Star");
         }
     }
 
@@ -49,5 +53,21 @@ public class SoundManager : MonoBehaviour
         audioSource.Play();
         yield return new WaitForSeconds(audioSource.clip.length);
         audioSource.Stop();
+    }
+
+    IEnumerator Star() //Se pausa la música se cambia el clip a la nueva, se espera la duración de la música y pasa el nivel
+    {   
+        audioSource.Pause();
+        audioSource.clip = clips[3];
+        audioSource.Play();
+        yield return new WaitForSeconds(audioSource.clip.length);
+        audioSource.Stop();
+        Replay();
+    }
+
+    private void Replay()
+    {
+        audioSource.clip = clips[0];
+        audioSource.Play();
     }
 }

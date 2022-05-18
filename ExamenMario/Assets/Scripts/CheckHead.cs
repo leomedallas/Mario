@@ -5,6 +5,7 @@ using UnityEngine;
 public class CheckHead : MonoBehaviour
 {
     private AudioSource audioSource;
+    public AudioClip[] clips;
     public Mario mario;
 
     private void Start()
@@ -17,13 +18,15 @@ public class CheckHead : MonoBehaviour
     {
         if (collision.CompareTag("Mario")) 
         {
+            audioSource.clip = clips[0];
             audioSource.Play();
             StartCoroutine("Bump"); //Si detecta que toco a Mario iniciamos la Corutina Bump
         }
         if((collision.CompareTag("Mario") && mario.isGrow) || (collision.CompareTag("Mario") && mario.isFlower))
         {
-            Destroy(transform.parent.gameObject);
-            Debug.Log("Lol");
+            audioSource.clip = clips[1];
+            audioSource.Play();
+            Destroy(transform.parent.gameObject, 0.547f);
         }
     }
 

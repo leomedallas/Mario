@@ -11,7 +11,7 @@ public class Mario : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sprRndr;
     private Animator anim;
-    private CapsuleCollider2D coll;
+    public CapsuleCollider2D coll;
     public CheckGround check;
     private AudioSource audioSource;
     [Header("Movement")]
@@ -43,7 +43,6 @@ public class Mario : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sprRndr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        coll = GetComponent<CapsuleCollider2D>();
         audioSource = GetComponent<AudioSource>();
         canMove = true; //Bool que hace que Mario se puede mover o no
         timesUp = false; //Bool que detecta cuando el tiempo se acabó
@@ -106,21 +105,23 @@ public class Mario : MonoBehaviour
         else if(!isGrow)
         {
             anim.SetBool("Grow", false);
-            coll.offset = new Vector2(0.00119f, 0.00030f);
-            coll.size = new Vector2(0.24942f, 0.50069f);
         }
 
         if(isFlower)
         {
             anim.SetBool("IsFlower", true);
-            coll.offset = new Vector2(0.01149f, 0.2354f);
-            coll.size = new Vector2(0.4141f, 0.9709f);
+            coll.offset = new Vector3(0.01149f, 0.2354f, 0f);
+            coll.size = new Vector3(0.4141f, 0.9709f, 0f);
         }
         else if (!isFlower)
         {
             anim.SetBool("IsFlower", false);
-            coll.offset = new Vector2(0.01149f, 0.2354f);
-            coll.size = new Vector2(0.4141f, 0.9709f);
+        }
+
+        if(!isGrow && !isFlower)
+        {
+            coll.offset = new Vector2(0.00119f, 0.00030f);
+            coll.size = new Vector2(0.24942f, 0.50069f);
         }
     }
 
@@ -148,6 +149,12 @@ public class Mario : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             audioSource.clip = clips[0];
+            audioSource.Play();
+        }
+
+        if(Input.GetKey(KeyCode.E) && isFlower)
+        {
+            audioSource.clip = clips[2];
             audioSource.Play();
         }
 
@@ -202,12 +209,16 @@ public class Mario : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Mushroom")) 
         {
+            audioSource.clip = clips[3];
+            audioSource.Play();
             isGrow = true;
             Destroy(collision.gameObject, 0.2f);
         }
 
         if (collision.gameObject.CompareTag("Flower") && isGrow)
         {
+            audioSource.clip = clips[3];
+            audioSource.Play();
             isFlower = true;
             Destroy(collision.gameObject, 0.2f);
         }
