@@ -11,5 +11,10 @@ public class ScnManager : MonoBehaviour
         {
             SceneManager.LoadScene("LevelIntro");
         }
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 }
